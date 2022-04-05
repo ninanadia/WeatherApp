@@ -2,6 +2,7 @@ package com.idn.ninanadia.weatherapp
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -13,6 +14,8 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.location.*
@@ -28,9 +31,12 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +47,7 @@ class MainActivity : AppCompatActivity() {
     //tipe FusedLocationProviderClient diperlukan untuk mendapatkan lokasi latitude dan longitude
     //yang akan digunakan untuk pemanggilan API cuaca
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private var mProgressDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,6 +146,12 @@ class MainActivity : AppCompatActivity() {
         if (Constants.isNetworkAvailable(this)) {
             val client = WeatherConfig.getWeatherService()
                 .getWeather(latitude, longitude, METRIC_UNIT, API_KEY)
+
+            showCustomProgressDialog()
+
+            //fungsi enqueue digunakan untuk menjalankan request
+            //SECARA asynchronous di background, sehingga aplikasi tidak freese ketika
+            //melakukan request
             client.enqueue(object : Callback<WeatherResponse> {
                 override fun onResponse(
                     call: Call<WeatherResponse>,
@@ -146,14 +159,19 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     val responseBody = response.body()
                     if (response.isSuccessful && responseBody != null) {
+
+                        hideProgressDialog()
+                        setupUI(responseBody)
                         Log.i("Response Result", "$responseBody")
                     } else {
                         Log.e(TAG, "onFailure: ${response.message()}")
                     }
 
                 }
+
                 override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
                     Log.e(TAG, "Error: ${t.message.toString()}")
+                    hideProgressDialog()
                 }
 
             })
@@ -209,5 +227,89 @@ class MainActivity : AppCompatActivity() {
             LocationManager.NETWORK_PROVIDER
         )
 
+    }
+
+    private fun showCustomProgressDialog() {
+        mProgressDialog = Dialog(this)
+
+        mProgressDialog!!.setContentView(R.layout.dialog_custom_progress)
+
+        //memulai dialog dan menampilkannya di layar
+        mProgressDialog!!.show()
+    }
+
+    private fun hideProgressDialog() {
+        if (mProgressDialog != null) {
+            mProgressDialog!!.dismiss()
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setupUI(responseBody: WeatherResponse) {
+        for (i in responseBody.weather.indices) {
+            Log.i("Weather Name", responseBody.weather.toString())
+
+
+            val tvCity: TextView = findViewById(R.id.tv_city_code)
+            tvCity.text = responseBody.name + ", "
+            val tvCountry: TextView = findViewById(R.id.tv_country)
+            tvCountry.text = responseBody.sys.country
+            val tvStatus: TextView = findViewById(R.id.tv_status)
+            tvStatus.text = responseBody.weather[i].description
+            val tvDegree: TextView = findViewById(R.id.tv_degree)
+            tvDegree.text =
+                responseBody.main.temp.toString() + getUnit(application.resources.configuration.locales.toString())
+            val tvMinTemp: TextView = findViewById(R.id.tv_min_temp)
+            tvMinTemp.text = responseBody.main.temp_min.toString() + " min"
+            val tvMaxTemp: TextView = findViewById(R.id.tv_max_temp)
+            tvMaxTemp.text = responseBody.main.temp_max.toString() + " max"
+
+            val tvSunriseTime: TextView = findViewById(R.id.tv_sunrise)
+            tvSunriseTime.text = unixTime(responseBody.sys.sunrise)
+            val tvSunsetTime: TextView = findViewById(R.id.tv_sunset)
+            tvSunsetTime.text = unixTime(responseBody.sys.sunset)
+
+            val tvWind: TextView = findViewById(R.id.tv_wind)
+            tvWind.text = responseBody.wind.speed.toString() + " miles/hour"
+            val tvPressure: TextView = findViewById(R.id.pressure)
+            tvPressure.text = responseBody.main.pressure.toString()
+            val tvHumidity: TextView = findViewById(R.id.humidity)
+            tvHumidity.text = responseBody.main.humidity.toString() + " per cent"
+            val tvVisibility: TextView = findViewById(R.id.tv_visibility)
+            tvVisibility.text = responseBody.visibility.toString()
+            val ivWeather: ImageView = findViewById(R.id.iv_weather_pictures)
+
+            when(responseBody.weather[i].icon){
+                "01d" -> ivWeather.setImageResource(R.drawable.ic_cloud)
+                "02d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "03d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "04d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "09d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "10d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "11d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "13d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "01n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "02n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "03n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "10n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "11n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+            }
+
+        }
+    }
+
+    private fun getUnit(value: String): String? {
+        var value = "°C"
+        if ("US" == value || "LR" == value || "MM" == value) {
+            value = "°F"
+        }
+        return value
+    }
+
+    private fun unixTime(timex: Long): String? {
+        val date = Date(timex * 1000L)
+        val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+        sdf.timeZone = TimeZone.getDefault()
+        return sdf.format(date)
     }
 }

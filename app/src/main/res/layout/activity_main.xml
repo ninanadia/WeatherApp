@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,57 +13,57 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#4DFFFFFF"
-            android:fontFamily="@font/rubik_medium"
-            android:padding="15dp"
-            android:text="@string/error_message"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_error"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#4DFFFFFF"-->
+<!--            android:fontFamily="@font/rubik_medium"-->
+<!--            android:padding="15dp"-->
+<!--            android:text="@string/error_message"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <ProgressBar
-            android:id="@+id/pb_loading"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <ProgressBar-->
+<!--            android:id="@+id/pb_loading"-->
+<!--            style="?android:attr/progressBarStyle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/view_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/view_search"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
 
-<!--            <androidx.appcompat.widget.SearchView-->
-<!--                android:id="@+id/edt_city_name"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:background="@drawable/bg_degree"-->
-<!--                android:focusable="true"-->
-<!--                android:focusableInTouchMode="true"-->
-<!--                android:inputType="text"-->
-<!--                app:defaultQueryHint="@string/enter_your_city_name"-->
-<!--                app:iconifiedByDefault="false"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:queryBackground="@android:color/transparent"-->
-<!--                app:searchHintIcon="@drawable/ic_search"-->
-<!--                app:searchIcon="@drawable/ic_search"-->
-<!--                tools:layout_editor_absoluteX="36dp" />-->
+<!--            &lt;!&ndash;            <androidx.appcompat.widget.SearchView&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/edt_city_name"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="50dp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:background="@drawable/bg_degree"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:focusable="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:focusableInTouchMode="true"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:inputType="text"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:defaultQueryHint="@string/enter_your_city_name"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:iconifiedByDefault="false"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:queryBackground="@android:color/transparent"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:searchHintIcon="@drawable/ic_search"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:searchIcon="@drawable/ic_search"&ndash;&gt;-->
+<!--            &lt;!&ndash;                tools:layout_editor_absoluteX="36dp" />&ndash;&gt;-->
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
         <TextView
             android:id="@+id/tv_greetings"
@@ -77,11 +76,11 @@
             android:textSize="@dimen/_15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_search" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_city_code"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_medium"
             android:text="@string/city_name"
@@ -89,6 +88,18 @@
             android:textSize="23sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_greetings" />
+
+        <TextView
+            android:id="@+id/tv_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@string/country"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_greetings"
+            app:layout_constraintStart_toEndOf="@+id/tv_city_code" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/view_degree"
@@ -148,26 +159,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:gravity="center"
+                    android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@id/tv_degree">
 
                     <TextView
                         android:id="@+id/tv_min_temp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5dp"
                         android:fontFamily="@font/rubik_regular"
                         android:text="@string/min_temp"
                         android:textColor="@color/white" />
-
-                    <Space
-                        android:layout_width="@dimen/_20dp"
-                        android:layout_height="@dimen/_20dp" />
 
                     <TextView
                         android:id="@+id/tv_max_temp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5dp"
                         android:fontFamily="@font/rubik_regular"
                         android:text="@string/max_temp"
                         android:textColor="@color/white" />
@@ -204,6 +213,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_details"
                         android:gravity="center"
@@ -216,10 +226,6 @@
                             android:src="@drawable/sunrise"
                             app:tint="@color/white" />
 
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="5dp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -229,7 +235,7 @@
                             android:textSize="12dp" />
 
                         <TextView
-                            android:id="@+id/sunrise"
+                            android:id="@+id/tv_sunrise"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/rubik_regular"
@@ -238,13 +244,10 @@
                             android:textSize="14dp" />
                     </LinearLayout>
 
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_details"
                         android:gravity="center"
@@ -266,7 +269,7 @@
                             android:textSize="12dp" />
 
                         <TextView
-                            android:id="@+id/sunset"
+                            android:id="@+id/tv_sunset"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/rubik_regular"
@@ -275,13 +278,10 @@
                             android:textSize="14dp" />
                     </LinearLayout>
 
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_details"
                         android:gravity="center"
@@ -294,10 +294,6 @@
                             android:src="@drawable/wind"
                             app:tint="@color/white" />
 
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="5dp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -307,7 +303,7 @@
                             android:textSize="12dp" />
 
                         <TextView
-                            android:id="@+id/wind"
+                            android:id="@+id/tv_wind"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/rubik_regular"
@@ -316,10 +312,6 @@
                             android:textSize="14dp" />
                     </LinearLayout>
                 </LinearLayout>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="10dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -330,6 +322,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_details"
                         android:gravity="center"
@@ -341,10 +334,6 @@
                             android:layout_height="25dp"
                             android:src="@drawable/pressure"
                             app:tint="@color/white" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="5dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -364,13 +353,10 @@
                             android:textSize="14dp" />
                     </LinearLayout>
 
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_details"
                         android:gravity="center"
@@ -382,10 +368,6 @@
                             android:layout_height="25dp"
                             android:src="@drawable/humidity"
                             app:tint="@color/white" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="5dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -405,13 +387,10 @@
                             android:textSize="14dp" />
                     </LinearLayout>
 
-                    <Space
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_details"
                         android:gravity="center"
@@ -421,12 +400,8 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:src="@drawable/info"
+                            android:src="@drawable/ic_visibility"
                             app:tint="@color/white" />
-
-                        <Space
-                            android:layout_width="wrap_content"
-                            android:layout_height="5dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -437,7 +412,7 @@
                             android:textSize="12dp" />
 
                         <TextView
-                            android:id="@+id/about"
+                            android:id="@+id/tv_visibility"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/rubik_regular"

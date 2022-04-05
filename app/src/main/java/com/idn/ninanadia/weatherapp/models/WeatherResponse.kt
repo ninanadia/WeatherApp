@@ -2,6 +2,9 @@ package com.idn.ninanadia.weatherapp.models
 
 import com.google.gson.annotations.SerializedName
 
+//Kelas model untuk data JSON
+//property harus memiliki nilai yang sama persis dengan key pada respon JSON
+//SerializedName berfungsi untuk menandai suatu variabel untuk dimasukkan data dengan key yang sesuai dari JSON
 data class WeatherResponse(
     @field:SerializedName("coord")
     val coord: Coord,
