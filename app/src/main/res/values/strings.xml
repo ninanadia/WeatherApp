@@ -13,4 +13,5 @@
     <string name="min_temp">Min Temp</string>
     <string name="please_wait">Please Wait</string>
     <string name="country">Country</string>
+    <string name="action_refresh">Refresh</string>
 </resources>

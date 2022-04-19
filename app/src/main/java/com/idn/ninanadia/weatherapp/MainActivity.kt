@@ -14,6 +14,8 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -150,7 +152,7 @@ class MainActivity : AppCompatActivity() {
             showCustomProgressDialog()
 
             //fungsi enqueue digunakan untuk menjalankan request
-            //SECARA asynchronous di background, sehingga aplikasi tidak freese ketika
+            //SECARA asynchronous di background, sehingga aplikasi tidak freeze ketika
             //melakukan request
             client.enqueue(object : Callback<WeatherResponse> {
                 override fun onResponse(
@@ -238,6 +240,24 @@ class MainActivity : AppCompatActivity() {
         mProgressDialog!!.show()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.action_refresh -> {
+                requestLocationData()
+                true
+            }else -> super.onOptionsItemSelected(item)
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
+
     private fun hideProgressDialog() {
         if (mProgressDialog != null) {
             mProgressDialog!!.dismiss()
@@ -277,22 +297,22 @@ class MainActivity : AppCompatActivity() {
             tvHumidity.text = responseBody.main.humidity.toString() + " per cent"
             val tvVisibility: TextView = findViewById(R.id.tv_visibility)
             tvVisibility.text = responseBody.visibility.toString()
-            val ivWeather: ImageView = findViewById(R.id.iv_weather_pictures)
 
+            val ivWeather: ImageView = findViewById(R.id.iv_weather_pictures)
             when(responseBody.weather[i].icon){
-                "01d" -> ivWeather.setImageResource(R.drawable.ic_cloud)
-                "02d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "03d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "04d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "09d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "10d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "11d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "13d" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "01n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "02n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "03n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "10n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
-                "11n" -> ivWeather.setImageResource(R.drawable.ic_sunny)
+                "01d" -> ivWeather.setImageResource(R.drawable.sun)
+                "02d" -> ivWeather.setImageResource(R.drawable.cloudy)
+                "03d" -> ivWeather.setImageResource(R.drawable.cloud)
+                "04d" -> ivWeather.setImageResource(R.drawable.cloud)
+                "09d" -> ivWeather.setImageResource(R.drawable.rainyday)
+                "10d" -> ivWeather.setImageResource(R.drawable.rainyday)
+                "11d" -> ivWeather.setImageResource(R.drawable.thunder)
+                "13d" -> ivWeather.setImageResource(R.drawable.snow)
+                "01n" -> ivWeather.setImageResource(R.drawable.cloud)
+                "02n" -> ivWeather.setImageResource(R.drawable.cloud)
+                "03n" -> ivWeather.setImageResource(R.drawable.cloud)
+                "10n" -> ivWeather.setImageResource(R.drawable.cloud)
+                "11n" -> ivWeather.setImageResource(R.drawable.rainyday)
             }
 
         }
